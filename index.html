@@ -1,13 +1,182 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Website</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zwais</title>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+  
+  <link rel="stylesheet" href="/style.css">
+
+  </head>
 <body>
-    <h1>Hallo Welt</h1>
-    <script src="script.js"></script>
+
+  <nav>
+    <div id="logo">ZWAIS</div>
+    <ul>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="color-reveal"></div>
+  <div class="drag-handle"></div>
+  
+  <main>
+    <section class="hero-section">
+      <div class="headline-bundle">
+        <div>AI SOLUTIONS</div>
+        <div>FOR SMALL</div>
+        <div>AND MID-SIZED</div>
+        <div>COMPANIES</div>
+      </div>
+      <img src="/bot.png" alt="Bot Sticker" class="sticker bot-sticker">
+      <img src="/llama.png" alt="Llama Sticker" class="sticker llama-sticker">
+    </section>
+
+    <div class="card-wrapper">
+      <section class="card-section">
+        <h1 class="reveal-on-scroll">Insight - Roadmap - Implementation</h1>
+        <p class="reveal-on-scroll">
+          Discover our services, designed to guide you through every stage of AI integration. From initial Insight and analysis of your potential, to a strategic Roadmap for success, and finally to a seamless Implementation of cutting-edge solutions, we are your partners in innovation.
+        </p>
+      </section>
+    </div>
+
+    <section class="contact-section">
+      <h2 class="reveal-on-scroll">DO YOU NEED AI?</h2>
+      <p class="reveal-on-scroll">DISCOVER YOUR AI NEEDS</p>
+      <form class="form-wrapper reveal-on-scroll" action="#" method="POST">
+        <img src="/arrow.png" alt="Arrow Sticker" class="sticker arrow-sticker arrow-1">
+        <img src="/arrow.png" alt="Arrow Sticker" class="sticker arrow-sticker arrow-2">
+        <img src="/arrow.png" alt="Arrow Sticker" class="sticker arrow-sticker arrow-3">
+        <img src="/arrow.png" alt="Arrow Sticker" class="sticker arrow-sticker arrow-4">
+        <div class="form-layout">
+          <input type="text" name="industry" placeholder="Business type or Industry *" required>
+          <div class="form-row">
+            <input type="url" name="website" placeholder="Website URL *" required>
+            <input type="email" name="email" placeholder="E-Mail *" required>
+          </div>
+        </div>
+        <button type="submit">Generate</button>
+      </form>
+    </section>
+
+    <section class="services-section">
+      <div class="swiper reveal-on-scroll">
+<div class="swiper-wrapper">
+  <div class="swiper-slide">Service Card 1</div>
+  <div class="swiper-slide">Service Card 2</div>
+  <div class="swiper-slide">Service Card 3</div>
+  <div class="swiper-slide">Service Card 4</div>
+  <div class="swiper-slide">Service Card 5</div>
+  <div class="swiper-slide">Service Card 6</div>
+  <div class="swiper-slide">Service Card 7</div>
+  <div class="swiper-slide">Service Card 8</div>
+  <div class="swiper-slide">Service Card 9</div>
+  <div class="swiper-slide">Service Card 10</div>
+</div>
+      </div>
+    </section>
+
+    <section class="document-section">
+      <div class="section-headline">
+        <h1>SIMPLIFY YOUR DOCUMENTS</h1>
+      </div>
+      <div class="section-description">
+        <p>Instantly transform complex documents into clear summaries...</p>
+      </div>
+      <div class="document-interface">
+        <div class="input-column">
+          <div class="search-wrapper">
+            <input type="search" placeholder="Search for topic">
+          </div>
+          <div class="drop-zone">
+            <div class="drop-zone-prompt">
+              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <h3>Drag & Drop Files Here</h3>
+              <p>Up to 10 files (PDF, DOCX, TXT)</p>
+            </div>
+          </div>
+        </div>
+        <div class="output-column">
+          <div class="ai-output">
+            <div class="ai-chat-bubble">
+              <p>Your AI-generated summary and key insights will appear here...</p>
+            </div>
+            <div class="chat-prompt">
+              <input type="text" placeholder="Ask a follow-up question...">
+              <button>Ask</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="garmin-section">
+      <div class="garmin-content">
+        <h1>OR TALK TO GARMIN</h1>
+        <p>HE CAN CHANGE MOODS, TELL YOU ABOUT AI NEEDS...</p>
+        <div class="garmin-chat-area">
+          <input type="text" class="garmin-chat-input" placeholder="Start your conversation...">
+        </div>
+        <div class="mood-selector">
+          <button class="mood-btn" data-mood="professional">Professional</button>
+          <button class="mood-btn" data-mood="passionate">Passionate</button>
+          <button class="mood-btn" data-mood="friendly">Friendly</button>
+          <button class="mood-btn" data-mood="witty">Witty</button>
+          <button class="mood-btn" data-mood="direct">Direct</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-image">
+        <img src="/team.jpg" alt="Our Team">
+      </div>
+      <div class="about-text">
+        <h2>ABOUT US</h2>
+        <p>Founded on the principle of innovation, ZWAIS is dedicated...</p>
+        <p>From document simplification to bespoke AI integration...</p>
+      </div>
+      <img src="/hat.png" alt="Hat Sticker" class="sticker hat-sticker">
+      <img src="/beard.png" alt="Beard Sticker" class="sticker beard-sticker">
+    </section>
+
+   <section class="map-section">
+  <h2>WHERE YOU CAN FIND US</h2>
+
+  <gmpx-api-loader key="AIzaSyCm6T20MZDNRs248Tabo4onINyVFGv_XI0"></gmpx-api-loader>
+
+  <gmp-map
+    center="48.2497274,16.3686359"
+    zoom="16"
+    map-id="DEMO_MAP_ID"
+    class="map-container"
+  >
+    <gmp-advanced-marker position="48.2497274,16.3686359"></gmp-advanced-marker>
+  </gmp-map>
+
+  <p class="address-text">
+    Muthgasse 23, 1190 Wien, Austria
+  </p>
+</section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">ZWAIS</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-copyright">&copy; 2025 ZWAIS. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
