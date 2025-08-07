@@ -146,29 +146,30 @@ nav a:hover {
   cursor: grabbing;
 }
 /* In style.css, replace all .arrow-sticker rules with this */
+/* In style.css, find and replace the arrow-sticker rules */
+
 .arrow-sticker {
   width: 60px;
   position: absolute;
 }
-/* In style.css, replace the arrow rules */
 .arrow-1 {
-  top: 230px;
-  left: 20%;
-  transform: rotate(110deg);
+  top: -80px; /* Moves it up a bit */
+  left: 15%;
+  transform: rotate(125deg);
 }
 .arrow-2 {
-  top: 550px;
-  right: 20%;
-  transform: rotate(250deg);
+  top: -150px; /* Moves it up a bit */
+  right: 15%;
+  transform: rotate(235deg);
 }
 .arrow-3 {
-  top: 550px;
-  left: 35%;
+  top: 300px; /* Moves it down a bit */
+  left: 25%;
   transform: rotate(45deg) scaleX(-1);
 }
 .arrow-4 {
-  top: 545px;
-  right: 35%;
+  top: 300px; /* Moves it down a bit */
+  right: 25%;
   transform: rotate(315deg);
 }
 /* --- CARD SECTION --- */
