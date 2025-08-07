@@ -10,6 +10,9 @@
   src: url('/rainylock/rainylock.ttf') format('truetype');
 }
 
+html, body {
+  overflow-x: hidden;
+}
 /* --- BASE SETUP --- */
 body {
   margin: 0;
@@ -805,5 +808,45 @@ nav.nav-open .hamburger::after {
 .mood-selector {
   flex-wrap: wrap; /* Allows buttons to wrap */
   justify-content: center; /* Centers the wrapped buttons */
+}
+/* Add this inside your @media query */
+
+/* Ensure all main sections are centered on mobile */
+.hero-section,
+.card-section,
+.contact-section,
+.document-section,
+.garmin-section,
+.about-section,
+.map-section {
+  text-align: center;
+  padding-left: 5vw;  /* Add some padding for smaller screens */
+  padding-right: 5vw;
+}
+
+/* Ensure all headlines use the consistent system font */
+.headline-bundle div,
+.card-section h1,
+.contact-section h2,
+.document-section h1,
+.garmin-content h1,
+.about-text h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+/* Add this inside your @media query */
+
+.hat-sticker,
+.beard-sticker {
+  position: relative; /* Change from absolute to flow with the content */
+  display: block;
+  margin: 30px auto;  /* Center them and add space */
+  width: 120px;       /* Make them smaller */
+  
+  /* Reset positioning properties */
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+  transform: rotate(0deg); /* Straighten them out on mobile */
 }
 }
