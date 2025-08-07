@@ -305,8 +305,38 @@ nav a:hover {
 }
 .swiper { width: 100%; padding: 50px 0; overflow: visible; }
 .swiper-wrapper { transform: translateZ(0); }
-.swiper-slide { width: 375px; height: 525px; background-color: #ffffff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 600; transform: scale(0.8); transition: transform 0.4s ease; will-change: transform; }
-.swiper-slide-active { transform: scale(1); z-index: 1; }
+/* In style.css, find and replace the .swiper-slide rule */
+.swiper-slide {
+  width: 375px;
+  height: 525px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border-radius: 15px;
+  
+  /* Align content to the top */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+  /* Add padding */
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  
+  transform: scale(0.8);
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+/* Add this new rule to style.css */
+.swiper-slide h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 2rem; /* A good headline size for the cards */
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0; /* Remove default headline margin */
+  line-height: 1.3;
+}
 
 /* --- DOCUMENT AI SECTION --- */
 .document-section {
@@ -480,3 +510,43 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
     justify-content: center;
   }
 }
+/* --- Unique Service Card Backgrounds --- */
+
+/* --- New, More Neutral Service Card Backgrounds --- */
+
+/* Card 1: Soft Blue */
+.swiper-slide:nth-child(1) {
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+}
+
+/* Card 2: Muted Purple */
+.swiper-slide:nth-child(2) {
+  background: linear-gradient(135deg, #C33764, #1D2671);
+}
+
+/* Card 3: Dusty Orange */
+.swiper-slide:nth-child(3) {
+  background: linear-gradient(135deg, #ee9ca7, #ffdde1);
+}
+
+/* Card 4: Gentle Green */
+.swiper-slide:nth-child(4) {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+/* Card 5: Professional Gray */
+.swiper-slide:nth-child(5) {
+  background: linear-gradient(135deg, #868f96, #596164);
+}
+
+/* Card 6: Warm Yellow */
+.swiper-slide:nth-child(6) {
+  background: linear-gradient(135deg, #FFB75E, #ED8F03);
+}
+
+/* Card 7: Deep Teal */
+.swiper-slide:nth-child(7) {
+  background: linear-gradient(135deg, #13547a, #80d0c7);
+}
+
+/* Add more rules for more cards if needed */
