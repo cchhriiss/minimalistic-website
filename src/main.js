@@ -1,6 +1,8 @@
 // --- SECTION 1: SCROLL-BASED TEXT ANIMATION ---
 const headlineLines = document.querySelectorAll('.headline-bundle div');
 
+document.addEventListener('DOMContentLoaded', () => {
+
 function handleScroll() {
   const scrollY = window.scrollY;
   const scrollFactor = 0.3;
@@ -134,9 +136,8 @@ animatedElements.forEach(element => {
   observer.observe(element);
 });
 // etc...
-// Add this entire block to the END of your main.js file
+
 // This block should be at the end of main.js
-import Swiper from 'swiper/bundle';
 
 const swiper = new Swiper('.swiper', {
   effect: 'slide',
@@ -150,7 +151,6 @@ const swiper = new Swiper('.swiper', {
 });
 // Add this entire block to the end of your main.js file
 
-// Add this block inside the DOMContentLoaded listener in main.js
 
 // --- SECTION: WINDOW RESIZE HANDLER ---
 // This function runs whenever the browser window is resized
@@ -165,3 +165,15 @@ function handleResize() {
 
 // Listen for the 'resize' event
 window.addEventListener('resize', handleResize);
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('nav');
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('nav-open');
+    });
+  }
+
+});
+import Swiper from 'swiper/bundle';

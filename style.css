@@ -14,10 +14,10 @@
 body {
   margin: 0;
   background-color: #ffffff;
-  height: 300vh; /* Adjust as you add more content */
-  overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 300vh; /* Or auto, depending on scroll needs */
+  overflow-x: hidden; /* This is the crucial line */
 }
+
 body.is-dragging {
   user-select: none;
   -webkit-user-select: none;
@@ -691,14 +691,66 @@ footer {
   }
 
   /* Make navbar links smaller and closer together */
-  nav ul {
-    gap: 20px;
-    justify-content: center; /* Center links on mobile */
-  }
-  nav a {
-    font-size: 0.9rem;
-  }
-  
+/* --- Burger Menu Styles --- */
+
+/* Hide the regular navigation links */
+nav ul {
+  display: none;
+  position: absolute;
+  top: 100%; /* Position it right below the navbar */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+nav li {
+  padding: 15px 0;
+}
+
+/* Show the menu when the nav is open */
+nav.nav-open ul {
+  display: flex;
+}
+
+/* Style the burger button */
+.nav-toggle {
+  display: block; /* Show the button on mobile */
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+}
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  display: block;
+  background: #333;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger::before {
+  transform: translateY(-8px);
+}
+.hamburger::after {
+  transform: translateY(5px);
+}
+
+/* Animate the burger into an "X" when open */
+nav.nav-open .hamburger {
+  transform: rotate(45deg);
+}
+nav.nav-open .hamburger::before {
+  opacity: 0;
+}
+nav.nav-open .hamburger::after {
+  transform: translateY(-3px) rotate(-90deg);
+}
+
   /* Adjust the main headline to fit on screen */
   .headline-bundle div {
     font-size: 12vw; /* Adjust font size for mobile */
@@ -738,4 +790,20 @@ footer {
   .form-row {
     flex-direction: column;
   }
+  /* --- Sticker Mobile Styles --- */
+.bot-sticker {
+  width: 80px;
+  top: 60%;
+  right: 2%;
+}
+.llama-sticker {
+  width: 70px;
+  bottom: 2%;
+  left: 2%;
+}
+/* --- Garmin Mobile Styles --- */
+.mood-selector {
+  flex-wrap: wrap; /* Allows buttons to wrap */
+  justify-content: center; /* Centers the wrapped buttons */
+}
 }
