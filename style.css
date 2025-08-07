@@ -681,3 +681,61 @@ footer {
   left: 23.6%;
   transform: rotate(0deg);
 }
+/* --- MOBILE RESPONSIVE STYLES --- */
+
+@media (max-width: 768px) {
+
+  /* Allow the body to scroll naturally based on content */
+  body {
+    height: auto;
+  }
+
+  /* Make navbar links smaller and closer together */
+  nav ul {
+    gap: 20px;
+    justify-content: center; /* Center links on mobile */
+  }
+  nav a {
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust the main headline to fit on screen */
+  .headline-bundle div {
+    font-size: 12vw; /* Adjust font size for mobile */
+    line-height: 1;
+  }
+  .headline-bundle div:nth-child(2),
+  .headline-bundle div:nth-child(3) {
+    left: 0; /* Remove the horizontal stagger on mobile */
+  }
+
+  /* Make the carousel cards smaller */
+  .swiper-slide {
+    width: 280px;
+    height: 380px;
+    transform: scale(1); /* Disable the scaling effect on mobile for a cleaner look */
+  }
+
+  /* Stack two-column layouts vertically */
+  .document-interface,
+  .about-section {
+    grid-template-columns: 1fr; /* Change from two columns to one */
+    gap: 40px;
+  }
+
+  /* Adjust headline sizes for all sections */
+  .section-headline h1,
+  .garmin-content h1,
+  .contact-section h2,
+  .map-section h2,
+  .about-text h2,
+  .card-section h1 {
+    font-size: 10vw;
+  }
+
+  /* Stack the contact form inputs */
+  .contact-section form,
+  .form-row {
+    flex-direction: column;
+  }
+}
