@@ -469,7 +469,7 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
   position: absolute;
   display: block;
   width: 100px;
-  bottom: 35%;      /* MOVED HIGHER */
+  bottom: 60%;      /* MOVED HIGHER */
   right: 5%;
   transform: rotate(10deg);
 }
