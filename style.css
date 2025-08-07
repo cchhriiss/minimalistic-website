@@ -455,21 +455,21 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
     bottom: 15%; /* FIXED: Repositioned llama */
     left: 2%;
   }
-  .arrow-sticker.arrow-2 {
-    top: -20px; /* FIXED: Repositioned arrow */
-  }
-  .hat-sticker,
-  .beard-sticker {
-    position: relative;
-    display: block;
-    margin: 30px auto;
-    width: 120px;
-    top: auto;
-    left: auto;
-    bottom: auto;
-    right: auto;
-    transform: rotate(0deg);
-  }
+ 
+.hat-sticker {
+  position: absolute;
+  width: 100px;
+  top: 2%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+.beard-sticker {
+  position: absolute;
+  width: 110px;
+  bottom: 2%;
+  right: 5%;
+  transform: rotate(10deg);
+}
   
   /* Garmin Mobile Styles */
   .mood-selector {
