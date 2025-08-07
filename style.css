@@ -17,8 +17,8 @@ html, body {
 body {
   margin: 0;
   background-color: #ffffff;
-  height: 300vh; /* Or auto, depending on scroll needs */
-  overflow-x: hidden; /* This is the crucial line */
+  height: auto; /* FIXED: Let content define the height for proper scrolling */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body.is-dragging {
@@ -60,7 +60,10 @@ nav a {
   transition: color 0.2s ease-in-out;
 }
 nav a:hover {
-  color: #000000;
+  color: #007aff;
+}
+.nav-toggle {
+  display: none; /* Hidden on desktop */
 }
 
 /* --- DIVIDER --- */
@@ -101,20 +104,21 @@ nav a:hover {
   z-index: 2;
 }
 .headline-bundle div {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* FIXED: Correct font for headline */
   font-weight: 700;
   text-transform: uppercase;
   color: #1d1d1f;
   font-size: 7vw;
   line-height: 1.1;
   position: relative;
-  animation: fadeInUp 0.8s ease-out backwards; /* Uses the non-conflicting animation */
+  animation: fadeInUp 0.8s ease-out backwards;
 }
 .headline-bundle div:nth-child(1) { left: 0vw; animation-delay: 0.2s; }
 .headline-bundle div:nth-child(2) { left: -15vw; animation-delay: 0.3s; }
 .headline-bundle div:nth-child(3) { left: 15vw; animation-delay: 0.4s; }
 .headline-bundle div:nth-child(4) { left: 0vw; animation-delay: 0.5s; }
 
-/* Non-conflicting fly-in animation */
+/* FIXED: This is the one, non-conflicting animation rule that allows the scroll effect to work */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -130,55 +134,67 @@ nav a:hover {
 .sticker {
   position: absolute;
   z-index: 20;
+  cursor: grab;
 }
+.sticker:active {
+  cursor: grabbing;
+}
+
+/* --- Hero Section Stickers --- */
 .bot-sticker {
   width: 120px;
   top: 50%;
   right: 5%;
   transform: translateY(-50%) rotate(15deg);
-  cursor: grab;
 }
 .llama-sticker {
   width: 150px;
   bottom: 5%;
   left: 5%;
   transform: rotate(-10deg);
-  cursor: grab;
 }
-.sticker:active {
-  cursor: grabbing;
-}
-/* In style.css, replace all .arrow-sticker rules with this */
-/* In style.css, find and replace the arrow-sticker rules */
 
+/* --- About Us Section Stickers --- */
+.hat-sticker {
+  width: 300px;
+  top: -23%;
+  left: 28%;
+  transform: rotate(10deg);
+}
+.beard-sticker {
+  width: 100px;
+  bottom: 48%;
+  left: 23.6%;
+  transform: rotate(0deg);
+}
+
+/* --- Contact Section Stickers --- */
 .arrow-sticker {
   width: 60px;
-  position: absolute;
 }
 .arrow-1 {
-  top: -80px; /* Moves it up a bit */
-  left: 15%;
-  transform: rotate(125deg);
+  top: -260px;
+  left: 10%;
+  transform: rotate(50deg);
 }
 .arrow-2 {
-  top: -150px; /* Moves it up a bit */
+  top: -250px;
   right: 15%;
-  transform: rotate(235deg);
+  transform: rotate(100deg);
 }
 .arrow-3 {
-  top: 300px; /* Moves it down a bit */
-  left: 25%;
-  transform: rotate(45deg) scaleX(-1);
+  top: -310px;
+  left: 35%;
+  transform: rotate(70deg)
 }
 .arrow-4 {
-  top: 300px; /* Moves it down a bit */
-  right: 25%;
-  transform: rotate(315deg);
+  top: -310px;
+  right: 38%;
+  transform: rotate(100deg);
 }
+
 /* --- CARD SECTION --- */
-.card-wrapper {
-  position: relative;
-}
+.card-wrapper { position: relative; }
 .card-section {
   height: 100vh;
   margin: 10vh 2vw;
@@ -189,48 +205,29 @@ nav a:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #ffffff;
-  border-radius: 25px;
+  background-color: #f9f9f9;
+  border-radius: 25p0x;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 3;
 }
 .card-section h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 5vw;
   font-weight: 600;
   color: #1d1d1f;
   margin: 0 0 20px 0;
 }
 .card-section p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
   color: #6e6e73;
   max-width: 650px;
   line-height: 1.6;
   margin: 0;
 }
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 4;
-  background: none;
-  border: none;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 4rem;
-  font-weight: 100;
-  color: #a0a0a0;
-  cursor: pointer;
-  padding: 0 20px;
-  transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-.arrow:hover {
-  color: #1d1d1f;
-  transform: translateY(-50%) scale(1.1);
-}
-.arrow-left { left: 0; }
-.arrow-right { right: 0; }
 
-/* --- CONTACT SECTION --- */
+/* --- CONTACT SECTION & SHARED DESCRIPTION --- */
 .contact-section {
   padding: 15vh 5vw;
   box-sizing: border-box;
@@ -241,6 +238,7 @@ nav a:hover {
   z-index: 3;
 }
 .contact-section h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 4.5vw;
   font-weight: 700;
   text-transform: uppercase;
@@ -248,7 +246,9 @@ nav a:hover {
   margin: 0 0 10px 0;
   letter-spacing: 1px;
 }
-.contact-section p {
+/* FIXED: This single rule makes both description paragraphs identical */
+.contact-section p, .section-description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.2rem;
   color: #6e6e73;
   text-transform: uppercase;
@@ -258,64 +258,39 @@ nav a:hover {
   line-height: 1.6;
   text-align: center;
 }
-.form-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin-top: 50px;
-}
-.contact-section form {
-  width: 100%;
-}
-.form-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  margin-bottom: 15px;
-}
-.form-row {
-  display: flex;
-  gap: 15px;
-  width: 100%;
-}
-.form-row input {
-  flex: 1;
-}
+.form-wrapper { position: relative; width: 100%; max-width: 800px; }
+.contact-section form { width: 100%; }
+.form-layout { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-bottom: 15px; }
+.form-row { display: flex; gap: 15px; width: 100%; }
+.form-row input { flex: 1; }
 .contact-section input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   padding: 18px 20px;
-  border: 1px solid transparent;
+  border: 1px solid #1d1d1f;
   background-color: #ffffff;
   border-radius: 12px;
   outline: none;
-  transition: all 0.2s ease-in-out;
   width: 100%;
   box-sizing: border-box;
 }
-.contact-section input:focus {
-  border-color: #000000;
-  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.25);
-}
-/* In style.css, find and replace the contact button rule */
+.contact-section input:focus { border-color: #007aff; box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.25); }
 .contact-section button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
   padding: 20px 40px;
   border: none;
   border-radius: 50px;
-  background-color: #1d1d1f; /* This is the correct dark color */
+  background-color: #1d1d1f;
   color: white;
   cursor: pointer;
-  transition: opacity 0.2s ease;
   width: 100%;
   margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .contact-section button:hover {
-  opacity: 1;
-}
-.contact-section button:hover {
-  background-color: #000000;
+  background-color: #333;
   transform: scale(1.02);
 }
 
@@ -328,35 +303,10 @@ nav a:hover {
   background-color: transparent;
   overflow: hidden;
 }
-.swiper {
-  width: 100%;
-  padding: 50px 0;
-  overflow: visible;
-}
-/* Add this new rule to your style.css */
-.swiper-wrapper {
-  /* This CSS trick helps fix z-index and rendering bugs with the slides */
-  transform: translateZ(0);
-}
-.swiper-slide {
-  width: 375px;
-  height: 525px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  transform: scale(0.8);
-  transition: transform 0.4s ease;
-    will-change: transform; /* ADD THIS for smoother animation */
-}
-.swiper-slide-active {
-  transform: scale(1);
-  z-index: 1;
-}
+.swiper { width: 100%; padding: 50px 0; overflow: visible; }
+.swiper-wrapper { transform: translateZ(0); }
+.swiper-slide { width: 375px; height: 525px; background-color: #ffffff; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: 600; transform: scale(0.8); transition: transform 0.4s ease; will-change: transform; }
+.swiper-slide-active { transform: scale(1); z-index: 1; }
 
 /* --- DOCUMENT AI SECTION --- */
 .document-section {
@@ -370,411 +320,116 @@ nav a:hover {
   z-index: 3;
   background-color: transparent;
 }
-.section-headline {
-  text-align: center;
-  margin-bottom: 15px;
-}
-.section-headline h1, .document-section h2 {
-  font-size: 4.5vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1d1d1f;
-  letter-spacing: 1px;
-  margin: 0;
-}
-.section-description p {
-  text-align: center;
-}
-.document-interface {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  width: 100%;
-  max-width: 1400px;
-}
-.input-column .search-wrapper input {
-  width: 100%;
-  font-size: 1rem;
-  padding: 15px 20px;
-  border: 1px solid #ffffff;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-sizing: border-box;
-  margin-bottom: 30px;
-}
-.drop-zone {
-  border: 2px dashed #d0d0d0;
-  border-radius: 15px;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 400px;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-.drop-zone.is-dragover {
-  border-color: #000000;
-  background-color: #f0f8ff;
-}
-.drop-zone-prompt h3 {
-  margin: 15px 0 5px 0;
-  color: #1d1d1f;
-}
-.drop-zone-prompt p {
-  margin: 0;
-  color: #888;
-}
-.drop-zone-prompt svg {
-  stroke: #d0d0d0;
-  transition: stroke 0.3s ease;
-}
-.drop-zone.is-dragover svg {
-  stroke: #000000;
-}
-.output-column .ai-output {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.ai-chat-bubble {
-  background-color: #ffffff;
-  border: 1px solid #e5e5e5;
-  border-radius: 15px;
-  padding: 25px;
-  text-align: left;
-  margin-bottom: 15px;
-}
-.ai-chat-bubble p {
-  margin: 0;
-  color: #333;
-  line-height: 1.6;
-}
-.chat-prompt {
-  display: flex;
-  gap: 10px;
-}
-.chat-prompt input {
-  flex-grow: 1;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px 15px;
-  font-size: 1rem;
-}
-.chat-prompt button {
-  border: none;
-  background-color: #1d1d1f;
-  color: white;
-  padding: 0 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 500;
-}
+.section-headline { text-align: center; margin-bottom: 15px; }
+.section-headline h1 { font-size: 4.5vw; font-weight: 700; text-transform: uppercase; color: #1d1d1f; letter-spacing: 1px; margin: 0; }
+.document-interface { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%; max-width: 1400px; }
+.input-column .search-wrapper input { width: 100%; font-size: 1rem; padding: 15px 20px; border: 1px solid #e5e5e5; background-color: #f9f9f9; border-radius: 12px; box-sizing: border-box; margin-bottom: 30px; }
+.drop-zone { border: 2px dashed #d0d0d0; border-radius: 15px; padding: 40px; display: flex; justify-content: center; align-items: center; text-align: center; height: 400px; transition: background-color 0.3s ease, border-color 0.3s ease; }
+.drop-zone.is-dragover { border-color: #007aff; background-color: #f0f8ff; }
+.drop-zone-prompt h3 { margin: 15px 0 5px 0; color: #1d1d1f; }
+.drop-zone-prompt p { margin: 0; color: #888; }
+.drop-zone-prompt svg { stroke: #d0d0d0; transition: stroke 0.3s ease; }
+.drop-zone.is-dragover svg { stroke: #007aff; }
+.output-column .ai-output { height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+.ai-chat-bubble { background-color: #ffffff; border: 1px solid #e5e5e5; border-radius: 15px; padding: 25px; text-align: left; margin-bottom: 15px; }
+.ai-chat-bubble p { margin: 0; color: #333; line-height: 1.6; }
+.chat-prompt { display: flex; gap: 10px; }
+.chat-prompt input { flex-grow: 1; border: 1px solid #e5e5e5; background: #fff; border-radius: 10px; padding: 10px 15px; font-size: 1rem; }
+.chat-prompt button { border: none; background-color: #1d1d1f; color: white; padding: 0 20px; border-radius: 10px; cursor: pointer; font-weight: 500; }
 
 /* --- GARMIN SECTION --- */
-.garmin-section {
-  min-height: 100vh;
-  padding: 5vw;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 3;
-  background-color: transparent;
-}
-.garmin-content {
-  width: 100%;
-  height: 90vh;
-  border: 2px solid #1d1d1f;
-  border-radius: 25px;
-  padding: 40px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  transition: border-color 0.4s ease-in-out;
-}
-.garmin-content h1 {
-  font-size: 4.5vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1d1d1f;
-  margin: 0 0 15px 0;
-}
-.garmin-content p {
-  max-width: 650px;
-  font-size: 1.1rem;
-  color: #6e6e73;
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-.garmin-chat-area {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 40px;
-}
-.garmin-chat-input {
-  width: 100%;
-  font-size: 1.2rem;
-  padding: 20px 25px;
-  border-radius: 15px;
-  border: 1px solid #e5e5e5;
-  box-sizing: border-box;
-  text-align: center;
-  outline: none;
-  transition: all 0.4s ease-in-out;
-}
-.mood-selector {
-  display: flex;
-  gap: 15px;
-}
-.mood-btn {
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 10px 20px;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  background-color: #ffffff;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.mood-btn:hover, .mood-btn.active {
-  background-color: #1d1d1f;
-  color: #fff;
-  border-color: #1d1d1f;
-}
-.garmin-content.mood-professional { border-color: #000000; }
-.garmin-content.mood-professional .garmin-chat-input:focus { border-color: #000000; box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.25); }
+.garmin-section { min-height: 100vh; padding: 5vw; box-sizing: border-box; display: flex; justify-content: center; align-items: center; position: relative; z-index: 3; background-color: transparent; }
+.garmin-content { width: 100%; height: 90vh; border: 2px solid #1d1d1f; border-radius: 25px; padding: 40px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transition: border-color 0.4s ease-in-out; }
+.garmin-content h1 { font-size: 4.5vw; font-weight: 700; text-transform: uppercase; color: #1d1d1f; margin: 0 0 15px 0; }
+.garmin-content p { max-width: 650px; font-size: 1.1rem; color: #6e6e73; line-height: 1.6; margin-bottom: 40px; }
+.garmin-chat-area { width: 100%; max-width: 800px; margin-bottom: 40px; }
+.garmin-chat-input { width: 100%; font-size: 1.2rem; padding: 20px 25px; border-radius: 15px; border: 1px solid #e5e5e5; box-sizing: border-box; text-align: center; outline: none; transition: all 0.4s ease-in-out; }
+.mood-selector { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.mood-btn { font-size: 1rem; font-weight: 500; padding: 10px 20px; border: 1px solid #ddd; border-radius: 50px; background-color: #ffffff; color: #333; cursor: pointer; transition: all 0.2s ease; }
+.mood-btn:hover, .mood-btn.active { background-color: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+.garmin-content.mood-professional { border-color: #007aff; }
+.garmin-content.mood-professional .garmin-chat-input:focus { border-color: #007aff; box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.25); }
 .garmin-content.mood-passionate { border-color: #ff9500; }
 .garmin-content.mood-passionate .garmin-chat-input:focus { border-color: #ff9500; box-shadow: 0 0 0 4px rgba(255, 149, 0, 0.25); }
 .garmin-content.mood-friendly { border-color: #af52de; }
 .garmin-content.mood-friendly .garmin-chat-input:focus { border-color: #af52de; box-shadow: 0 0 0 4px rgba(175, 82, 222, 0.25); }
 
 /* --- ABOUT US SECTION --- */
-.about-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  padding: 10vh 5vw;
-  min-height: 80vh;
-  box-sizing: border-box;
-  position: relative;
-  z-index: 3;
-  background-color: transparent;
-}
-.about-image img {
-  width: 100%;
-  height: 60vh;
-  object-fit: cover;
-  border-radius: 20px;
-}
-.about-text h2 {
-  font-size: 3vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1d1d1f;
-  margin: 0 0 20px 0;
-}
-.about-text p {
-  font-size: 1.1rem;
-  color: #6e6e73;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
+.about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding: 10vh 5vw; min-height: 80vh; box-sizing: border-box; position: relative; z-index: 3; background-color: transparent; }
+.about-image img { width: 100%; height: 60vh; object-fit: cover; border-radius: 20px; }
+.about-text h2 { font-size: 3vw; font-weight: 700; text-transform: uppercase; color: #1d1d1f; margin: 0 0 20px 0; }
+.about-text p { font-size: 1.1rem; color: #6e6e73; line-height: 1.7; margin-bottom: 20px; }
 
 /* --- MAP SECTION --- */
-.map-section {
-  padding: 10vh 5vw;
-  box-sizing: border-box;
-  text-align: center;
-  position: relative;
-  z-index: 3;
-  background-color: transparent;
-}
-.map-section h2 {
-  font-size: 3vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #1d1d1f;
-  margin: 0 0 40px 0;
-}
-.map-container {
-  width: 100%;
-  height: 60vh;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-.address-text {
-  font-size: 1.1rem;
-  color: #6e6e73;
-}
+.map-section { padding: 10vh 5vw; box-sizing: border-box; text-align: center; position: relative; z-index: 3; background-color: transparent; }
+.map-section h2 { font-size: 3vw; font-weight: 700; text-transform: uppercase; color: #1d1d1f; margin: 0 0 40px 0; }
+.map-container { width: 100%; height: 60vh; border-radius: 15px; overflow: hidden; margin-bottom: 20px; background-color: #f0f0f0; }
+.address-text { font-size: 1.1rem; color: #6e6e73; }
 
 /* --- FOOTER --- */
-footer {
-  padding: 40px 5vw;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
-  position: relative;
-  z-index: 3;
-}
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.footer-logo {
-  font-family: 'TS Crude', sans-serif;
-  font-size: 2rem;
-  color: #1d1d1f;
-}
-.footer-links a {
-  text-decoration: none;
-  color: #6e6e73;
-  margin: 0 15px;
-  font-size: 0.9rem;
-}
-.footer-copyright {
-  font-size: 0.9rem;
-  color: #888;
-}
+footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5e5e5; position: relative; z-index: 3; }
+.footer-content { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-logo { font-family: 'TS Crude', sans-serif; font-size: 2rem; color: #1d1d1f; }
+.footer-links a { text-decoration: none; color: #6e6e73; margin: 0 15px; font-size: 0.9rem; }
+.footer-copyright { font-size: 0.9rem; color: #888; }
+
 /* --- Global Scroll Animation System --- */
+.reveal-on-scroll { opacity: 0; transform: scale(0.95); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.reveal-on-scroll.is-visible { opacity: 1; transform: scale(1); }
 
-/* The initial state for all elements we want to animate */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
 
-/* The final state, which will be added by JavaScript */
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}/* --- New About Us Sticker Styles --- */
-
-.hat-sticker {
-  position: absolute;
-  width: 300px; /* CHANGED: Was 150px. Adjust as needed. */
-  
-  /* --- You can change these values --- */
-  top: -32%;
-  left: 27%;
-  transform: rotate(-5deg);
-}
-
-.beard-sticker {
-  position: absolute;
-  width: 100px; /* CHANGED: Was 180px. Adjust as needed. */
-
-  /* --- You can change these values --- */
-  bottom: 48%;
-  left: 23.6%;
-  transform: rotate(0deg);
-}
 /* --- MOBILE RESPONSIVE STYLES --- */
-
 @media (max-width: 768px) {
-
-  /* Allow the body to scroll naturally based on content */
-  body {
-    height: auto;
+  /* FIXED: Correctly position the burger menu */
+  nav {
+    justify-content: space-between;
+    align-items: center;
   }
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  nav li { padding: 15px 0; }
+  nav.nav-open ul { display: flex; }
+  .nav-toggle {
+    display: block;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .hamburger, .hamburger::before, .hamburger::after { content: ''; display: block; background: #333; height: 3px; width: 25px; border-radius: 3px; transition: all 0.3s ease-in-out; }
+  .hamburger::before { transform: translateY(-8px); }
+  .hamburger::after { transform: translateY(5px); }
+  nav.nav-open .hamburger { transform: rotate(45deg); }
+  nav.nav-open .hamburger::before { opacity: 0; }
+  nav.nav-open .hamburger::after { transform: translateY(-3px) rotate(-90deg); }
 
-  /* Make navbar links smaller and closer together */
-/* --- Burger Menu Styles --- */
-
-/* Hide the regular navigation links */
-nav ul {
-  display: none;
-  position: absolute;
-  top: 100%; /* Position it right below the navbar */
-  left: 0;
-  width: 100%;
-  background-color: white;
-  flex-direction: column;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-nav li {
-  padding: 15px 0;
-}
-
-/* Show the menu when the nav is open */
-nav.nav-open ul {
-  display: flex;
-}
-
-/* Style the burger button */
-.nav-toggle {
-  display: block; /* Show the button on mobile */
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  padding: 10px;
-}
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  display: block;
-  background: #333;
-  height: 3px;
-  width: 25px;
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
-}
-.hamburger::before {
-  transform: translateY(-8px);
-}
-.hamburger::after {
-  transform: translateY(5px);
-}
-
-/* Animate the burger into an "X" when open */
-nav.nav-open .hamburger {
-  transform: rotate(45deg);
-}
-nav.nav-open .hamburger::before {
-  opacity: 0;
-}
-nav.nav-open .hamburger::after {
-  transform: translateY(-3px) rotate(-90deg);
-}
-
-  /* Adjust the main headline to fit on screen */
+  /* Adjust headline for mobile */
   .headline-bundle div {
-    font-size: 12vw; /* Adjust font size for mobile */
+    font-size: 12vw;
     line-height: 1;
-  }
-  .headline-bundle div:nth-child(2),
-  .headline-bundle div:nth-child(3) {
-    left: 0; /* Remove the horizontal stagger on mobile */
+    left: 0 !important; /* FIXED: Force no stagger */
   }
 
   /* Make the carousel cards smaller */
   .swiper-slide {
     width: 280px;
     height: 380px;
-    transform: scale(1); /* Disable the scaling effect on mobile for a cleaner look */
+    transform: scale(1);
   }
 
   /* Stack two-column layouts vertically */
   .document-interface,
   .about-section {
-    grid-template-columns: 1fr; /* Change from two columns to one */
+    grid-template-columns: 1fr;
     gap: 40px;
   }
 
@@ -789,64 +444,36 @@ nav.nav-open .hamburger::after {
   }
 
   /* Stack the contact form inputs */
-  .contact-section form,
   .form-row {
     flex-direction: column;
   }
-  /* --- Sticker Mobile Styles --- */
-.bot-sticker {
-  width: 80px;
-  top: 60%;
-  right: 2%;
-}
-.llama-sticker {
-  width: 70px;
-  bottom: 2%;
-  left: 2%;
-}
-/* --- Garmin Mobile Styles --- */
-.mood-selector {
-  flex-wrap: wrap; /* Allows buttons to wrap */
-  justify-content: center; /* Centers the wrapped buttons */
-}
-/* Add this inside your @media query */
-
-/* Ensure all main sections are centered on mobile */
-.hero-section,
-.card-section,
-.contact-section,
-.document-section,
-.garmin-section,
-.about-section,
-.map-section {
-  text-align: center;
-  padding-left: 5vw;  /* Add some padding for smaller screens */
-  padding-right: 5vw;
-}
-
-/* Ensure all headlines use the consistent system font */
-.headline-bundle div,
-.card-section h1,
-.contact-section h2,
-.document-section h1,
-.garmin-content h1,
-.about-text h2 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-/* Add this inside your @media query */
-
-.hat-sticker,
-.beard-sticker {
-  position: relative; /* Change from absolute to flow with the content */
-  display: block;
-  margin: 30px auto;  /* Center them and add space */
-  width: 120px;       /* Make them smaller */
   
-  /* Reset positioning properties */
-  top: auto;
-  left: auto;
-  bottom: auto;
-  right: auto;
-  transform: rotate(0deg); /* Straighten them out on mobile */
-}
+  /* Sticker Mobile Styles */
+  .bot-sticker { width: 80px; top: 60%; right: 2%; }
+  .llama-sticker {
+    width: 70px;
+    bottom: 15%; /* FIXED: Repositioned llama */
+    left: 2%;
+  }
+  .arrow-sticker.arrow-2 {
+    top: -20px; /* FIXED: Repositioned arrow */
+  }
+  .hat-sticker,
+  .beard-sticker {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    width: 120px;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    right: auto;
+    transform: rotate(0deg);
+  }
+  
+  /* Garmin Mobile Styles */
+  .mood-selector {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
