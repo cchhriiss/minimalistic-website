@@ -456,17 +456,33 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
     left: 2%;
   }
  
+/* Repositioned arrows */
+.arrow-3 {
+  top: 0;
+  left: 15%; /* MOVED LEFT */
+  transform: rotate(70deg) scaleX(-1);
+}
+.arrow-4 {
+  top: 10px;
+  right: 15%; /* MOVED RIGHT */
+  transform: rotate(290deg);
+}
+
+
+/* Adjusted "About Us" stickers */
 .hat-sticker {
   position: absolute;
-  width: 100px;
-  top: 2%;
+  display: block;
+  width: 150px;     /* BIGGER (1.5x) */
+  top: 8%;          /* MOVED LOWER */
   left: 5%;
   transform: rotate(-15deg);
 }
 .beard-sticker {
   position: absolute;
-  width: 110px;
-  bottom: 2%;
+  display: block;
+  width: 100px;
+  bottom: 12%;      /* MOVED HIGHER */
   right: 5%;
   transform: rotate(10deg);
 }
