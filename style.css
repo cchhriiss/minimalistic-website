@@ -470,7 +470,7 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
   display: block;
   width: 100px;
   bottom: 61%;      /* MOVED HIGHER */
-  right: -40%;
+  right: 70%;
   transform: rotate(10deg);
 }
   
