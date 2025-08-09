@@ -3,112 +3,112 @@ const headlineLines = document.querySelectorAll('.headline-bundle div');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-function handleScroll() {
-  const scrollY = window.scrollY;
-  const scrollFactor = 0.3;
-  headlineLines.forEach((line, index) => {
-    let moveDistance = scrollY * scrollFactor;
-    if (index % 2 !== 0) { // Alternating direction
-      moveDistance = -moveDistance;
+  // --- OPTIMIZED SCROLL ANIMATION ---
+  const headlineLines = document.querySelectorAll('.headline-bundle div');
+  let ticking = false; // A flag for throttling
+
+  function handleScroll() {
+    const scrollY = window.scrollY;
+    const scrollFactor = 0.3;
+    headlineLines.forEach((line, index) => {
+      let moveDistance = scrollY * scrollFactor;
+      if (index % 2 !== 0) { moveDistance = -moveDistance; }
+      line.style.transform = `translateX(${moveDistance}px)`;
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
     }
-    line.style.transform = `translateX(${moveDistance}px)`;
   });
-}
-window.addEventListener('scroll', handleScroll);
 
 
-// --- SECTION 2: DRAGGABLE DIVIDER ---
-const revealLayer = document.querySelector('.color-reveal');
-const handle = document.querySelector('.drag-handle');
-let isDividerDragging = false;
+  // --- OPTIMIZED DIVIDER & STICKER LOGIC ---
+  const revealLayer = document.querySelector('.color-reveal');
+  const handle = document.querySelector('.drag-handle');
+  const allStickers = document.querySelectorAll('.sticker');
 
-function moveDivider(x) {
-  const minX = window.innerWidth * 0.03;
-  const maxX = window.innerWidth * 0.97;
-  const clampedX = Math.max(minX, Math.min(x, maxX));
-  const revealWidth = window.innerWidth - clampedX;
-  handle.style.left = clampedX + 'px';
-  revealLayer.style.width = revealWidth + 'px';
-  updateAllStickerClips(); // Update stickers when divider moves
-}
+  let isDragging = false;
+  let activeElement = null; // Can be the handle or a sticker
+  let offsetX, offsetY;
+  let targetX = 0;
+  let targetY = 0;
 
+  function moveElements() {
+    if (!isDragging) return;
 
-// --- SECTION 3: DRAGGABLE STICKERS (Multi-Sticker Version) ---
-const allStickers = document.querySelectorAll('.sticker');
-let activeSticker = null; // Tracks which sticker is being dragged
-let isStickerDragging = false;
-let stickerOffsetX, stickerOffsetY;
+    if (activeElement === handle) {
+      const minX = window.innerWidth * 0.03;
+      const maxX = window.innerWidth * 0.97;
+      const clampedX = Math.max(minX, Math.min(targetX, maxX));
+      const revealWidth = window.innerWidth - clampedX;
+      
+      handle.style.left = clampedX + 'px';
+      revealLayer.style.width = revealWidth + 'px';
+    } else if (activeElement && activeElement.classList.contains('sticker')) {
+      activeElement.style.left = `${targetX}px`;
+      activeElement.style.top = `${targetY}px`;
+    }
+    
+    updateAllStickerClips();
+    requestAnimationFrame(moveElements);
+  }
 
-// In main.js, find and replace this entire function
+  function updateAllStickerClips() { /* ...your existing clip function... */ }
 
-function updateAllStickerClips() {
-  if (!handle || !allStickers) return;
-  const handleRect = handle.getBoundingClientRect();
+  function startDrag(e) {
+    const target = e.target;
+    if (target === handle || target.classList.contains('sticker')) {
+      isDragging = true;
+      activeElement = target;
+      document.body.classList.add('is-dragging');
 
-  allStickers.forEach(sticker => {
-    const stickerRect = sticker.getBoundingClientRect();
-    let clipAmount = handleRect.left - stickerRect.left;
-    let visiblePercent = (1 - (clipAmount / stickerRect.width)) * 100;
-    visiblePercent = Math.max(0, Math.min(100, visiblePercent));
+      const currentX = e.clientX || e.touches[0].clientX;
+      const currentY = e.clientY || e.touches[0].clientY;
+      const rect = activeElement.getBoundingClientRect();
+      
+      offsetX = currentX - rect.left;
+      offsetY = currentY - rect.top;
 
-    // CORRECTED: This now uses a fixed 90-degree angle for a consistent horizontal wipe
-    const maskValue = `linear-gradient(90deg, black ${visiblePercent}%, transparent ${visiblePercent}%)`;
+      requestAnimationFrame(moveElements);
+    }
+  }
 
-    sticker.style.webkitMaskImage = maskValue;
-    sticker.style.maskImage = maskValue;
+  function stopDrag() {
+    isDragging = false;
+    activeElement = null;
+    document.body.classList.remove('is-dragging');
+  }
+
+  function onMove(e) {
+    if (!isDragging) return;
+    targetX = (e.clientX || e.touches[0].clientX) - offsetX;
+    targetY = (e.clientY || e.touches[0].clientY) - offsetY;
+  }
+
+  document.addEventListener('mousedown', startDrag);
+  document.addEventListener('touchstart', startDrag);
+  window.addEventListener('mouseup', stopDrag);
+  window.addEventListener('touchend', stopDrag);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', onMove);
+
+  // Initial Divider Position
+  window.addEventListener('load', () => {
+    const initialX = window.innerWidth * 0.03; // As per your last request
+    const minX = window.innerWidth * 0.03;
+    const maxX = window.innerWidth * 0.97;
+    const clampedX = Math.max(minX, Math.min(initialX, maxX));
+    const revealWidth = window.innerWidth - clampedX;
+    if (handle) handle.style.left = clampedX + 'px';
+    if (revealLayer) revealLayer.style.width = revealWidth + 'px';
+    updateAllStickerClips();
   });
-}
-
-// Moves the currently active sticker
-function onStickerMove(e) {
-  if (!activeSticker) return;
-  e.preventDefault();
-  const newX = (e.pageX || e.touches[0].pageX) - stickerOffsetX;
-  const newY = (e.pageY || e.touches[0].pageY) - stickerOffsetY;
-  activeSticker.style.left = `${newX}px`;
-  activeSticker.style.top = `${newY}px`;
-  updateAllStickerClips(); // Update clipping as the sticker moves
-}
-
-
-// --- SHARED EVENT LISTENERS ---
-function startDrag(e) {
-  document.body.classList.add('is-dragging');
-  // Check if the target is the divider handle
-  if (e.target === handle) {
-    isDividerDragging = true;
-  }
-  // Check if the target is one of the stickers
-  if (e.target.classList.contains('sticker')) {
-    isStickerDragging = true;
-    activeSticker = e.target;
-    stickerOffsetX = (e.pageX || e.touches[0].pageX) - activeSticker.offsetLeft;
-    stickerOffsetY = (e.pageY || e.touches[0].pageY) - activeSticker.offsetTop;
-  }
-}
-function stopDrag() {
-  isDividerDragging = false;
-  isStickerDragging = false;
-  activeSticker = null;
-  document.body.classList.remove('is-dragging');
-}
-function onMove(e) {
-  if (isDividerDragging) moveDivider(e.clientX || e.touches[0].clientX);
-  if (isStickerDragging) onStickerMove(e);
-}
-document.addEventListener('mousedown', startDrag);
-document.addEventListener('touchstart', startDrag);
-document.addEventListener('mouseup', stopDrag);
-document.addEventListener('touchend', stopDrag);
-document.addEventListener('mousemove', onMove);
-document.addEventListener('touchmove', onMove);
-
-
-// --- INITIAL STATE ON LOAD ---
-window.addEventListener('load', () => {
-  const initialX = window.innerWidth * 0.03;
-  moveDivider(initialX);
-});
 
 // At the end of main.js, replace the old observer with this new one
 
@@ -166,31 +166,27 @@ function handleResize() {
 // Listen for the 'resize' event
 window.addEventListener('resize', handleResize);
 
+  // Burger menu logic
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('nav');
 
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
+  // Make sure both elements were found before adding listeners
+  if (navToggle && nav) {
+    // This handles the opening and closing when you click the button
+    navToggle.addEventListener('click', (event) => {
+      // Stop the click from bubbling up and causing issues
+      event.stopPropagation(); 
       nav.classList.toggle('nav-open');
     });
-    // In main.js, find your burger menu code and add the scroll listener
 
-const navToggle = document.querySelector('.nav-toggle');
-const nav = document.querySelector('nav');
-
-if (navToggle) {
-  navToggle.addEventListener('click', () => {
-    nav.classList.toggle('nav-open');
-  });
-
-  // ADD THIS PART: Close nav on scroll
-  window.addEventListener('scroll', () => {
-    if (nav.classList.contains('nav-open')) {
-      nav.classList.remove('nav-open');
-    }
-  });
-}
+    // This handles closing the menu when you scroll
+    window.addEventListener('scroll', () => {
+      if (nav.classList.contains('nav-open')) {
+        nav.classList.remove('nav-open');
+      }
+    });
   }
 
-});
+}); // <-- Correctly closes DOMContentLoaded listener
+
 import Swiper from 'swiper/bundle';

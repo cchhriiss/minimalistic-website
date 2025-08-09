@@ -113,6 +113,8 @@ nav a:hover {
   background-image:
     radial-gradient(ellipse 40% 60% at 80% 25%, rgba(138, 92, 245, 0.15), transparent),
     radial-gradient(ellipse 50% 70% at 20% 85%, rgba(255, 148, 77, 0.15), transparent);
+      z-index: 1;
+  will-change: width; /* ADD THIS */
 }
 .drag-handle {
   position: fixed;
@@ -147,17 +149,18 @@ nav a:hover {
   line-height: 1.1;
   position: relative;
   animation: fadeInUp 0.8s ease-out backwards;
+    position: relative;
+  will-change: transform; /* ADD THIS */
 }
 .headline-bundle div:nth-child(1) { left: 0vw; animation-delay: 0.2s; }
 .headline-bundle div:nth-child(2) { left: -15vw; animation-delay: 0.3s; }
 .headline-bundle div:nth-child(3) { left: 15vw; animation-delay: 0.4s; }
 .headline-bundle div:nth-child(4) { left: 0vw; animation-delay: 0.5s; }
 
-/* FIXED: This is the one, non-conflicting animation rule that allows the scroll effect to work */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    margin-top: 40px;
+    margin-top: 40px; /* This version does not conflict with the scroll animation */
   }
   to {
     opacity: 1;
@@ -488,12 +491,16 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
   nav.nav-open .hamburger::before { opacity: 0; }
   nav.nav-open .hamburger::after { transform: translateY(-3px) rotate(-90deg); }
 
-  /* Adjust headline for mobile */
-  .headline-bundle div {
-    font-size: 12vw;
-    line-height: 1;
-    left: 0 !important; /* FIXED: Force no stagger */
-  }
+.headline-bundle div {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1d1d1f;
+  font-size: 7vw;
+  line-height: 1.1;
+  position: relative;
+  animation: fadeInUp 0.8s ease-out backwards;
+}
 
   /* Make the carousel cards smaller */
   .swiper-slide {
@@ -618,3 +625,8 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
     background-color: #e5e5e5;
     border: 2px solid #ffffff;
   }
+  /* Add this inside your @media (max-width: 768px) block */
+.drag-handle {
+  align-items: flex-start; /* Aligns the hint to the top */
+  padding-top: 120px;   /* Adds space from the top, adjust as needed */
+}
