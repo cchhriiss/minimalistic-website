@@ -496,8 +496,9 @@ footer { padding: 40px 5vw; background-color: #f9f9f9; border-top: 1px solid #e5
   font-weight: 700;
   text-transform: uppercase;
   color: #1d1d1f;
-  font-size: 7vw;
-  line-height: 1.1;
+  font-size: 12vw; /* Larger font size specifically for mobile */
+  line-height: 1;
+  left: 0 !important; 
   position: relative;
   animation: fadeInUp 0.8s ease-out backwards;
 }

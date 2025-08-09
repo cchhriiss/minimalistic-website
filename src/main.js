@@ -3,19 +3,35 @@ const headlineLines = document.querySelectorAll('.headline-bundle div');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- OPTIMIZED SCROLL ANIMATION ---
-  const headlineLines = document.querySelectorAll('.headline-bundle div');
-  let ticking = false; // A flag for throttling
+// In main.js, replace the entire first section with this block
 
-  function handleScroll() {
-    const scrollY = window.scrollY;
-    const scrollFactor = 0.3;
-    headlineLines.forEach((line, index) => {
-      let moveDistance = scrollY * scrollFactor;
-      if (index % 2 !== 0) { moveDistance = -moveDistance; }
-      line.style.transform = `translateX(${moveDistance}px)`;
+// --- SECTION 1: SCROLL-BASED TEXT ANIMATION (Optimized) ---
+const headlineLines = document.querySelectorAll('.headline-bundle div');
+let isTicking = false; // A flag to prevent the function from running too often
+
+function handleScroll() {
+  const scrollY = window.scrollY;
+  const scrollFactor = 0.3;
+
+  headlineLines.forEach((line, index) => {
+    let moveDistance = scrollY * scrollFactor;
+    if (index % 2 !== 0) {
+      moveDistance = -moveDistance;
+    }
+    line.style.transform = `translateX(${moveDistance}px)`;
+  });
+}
+
+// This optimized listener only runs the animation when the browser is ready
+window.addEventListener('scroll', () => {
+  if (!isTicking) {
+    window.requestAnimationFrame(() => {
+      handleScroll();
+      isTicking = false;
     });
+    isTicking = true;
   }
+});
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
