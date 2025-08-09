@@ -173,6 +173,23 @@ window.addEventListener('resize', handleResize);
     navToggle.addEventListener('click', () => {
       nav.classList.toggle('nav-open');
     });
+    // In main.js, find your burger menu code and add the scroll listener
+
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('nav');
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('nav-open');
+  });
+
+  // ADD THIS PART: Close nav on scroll
+  window.addEventListener('scroll', () => {
+    if (nav.classList.contains('nav-open')) {
+      nav.classList.remove('nav-open');
+    }
+  });
+}
   }
 
 });
