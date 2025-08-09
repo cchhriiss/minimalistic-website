@@ -157,14 +157,14 @@ nav a:hover {
 /* --- About Us Section Stickers --- */
 .hat-sticker {
   width: 300px;
-  top: -23%;
-  left: 28%;
+  top: -10%;
+  left: 16%;
   transform: rotate(10deg);
 }
 .beard-sticker {
   width: 100px;
-  bottom: 48%;
-  left: 23.6%;
+  bottom: 46.5%;
+  left: 33.8%;
   transform: rotate(0deg);
 }
 
